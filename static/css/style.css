@@ -1,0 +1,55 @@
+/* Custom CSS styles for navigation bar */
+.navbar {
+    background-color: #343a40;
+}
+
+.navbar-brand, .nav-link {
+    color: #000000 !important;
+}
+
+.navbar-toggler-icon {
+    background-color: #ffffff;
+}
+
+/* Custom CSS styles for hero section */
+.hero {
+    background-image: url('/static/jpg/nfl.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #000000;
+    text-align: center;
+    padding: 200px 0;
+    display: flex;
+    align-items: center;
+}
+
+.hero h1 {
+    font-size: 36px;
+}
+
+.hero-content {
+    flex: 1;
+    padding: 20px;
+    text-align: left;
+}
+
+/* Custom CSS styles for about section */
+.about {
+    background-color: #f8f9fa;
+    padding: 50px 0;
+}
+
+.about h2 {
+    font-size: 24px;
+    color: #333333;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+/* Custom CSS styles for footer section */
+.footer {
+    background-color: #343a40;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+}
