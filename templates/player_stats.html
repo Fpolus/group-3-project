@@ -45,47 +45,5 @@
         </div>
     </nav>
 
-    <div class="container">
-        <h2>Stats</h2>
-        <p>Search for a player's stats by name, year, team, and week.</p>
-        <form id="search-form" action="/player_stats" method="POST">
-            <div class="form-group">
-                <label for="player_name">Player Name</label>
-                <input type="text" class="form-control" id="player_name" name="player_name" placeholder="Enter player name">
-            </div>
-            <div class="form-group">
-                <label for="year">Year (e.g., 2022REG)</label>
-                <input type="text" class="form-control" id="year" name="year" placeholder="Enter year">
-            </div>
-            <div class="form-group">
-                <label for="team">Team (e.g., WAS)</label>
-                <input type="text" class="form-control" id="team" name="team" placeholder="Enter team abbreviation">
-            </div>
-            <div class="form-group">
-                <label for="week">Week (e.g., 6)</label>
-                <input type="text" class="form-control" id="week" name="week" placeholder="Enter week">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-        
-        <table class="table" id="player-stats-table">
-            <thead>
-                <tr>
-                    <th>Player Name</th>
-                    <th>Position</th>
-                    <th>Solo Tackles</th>
-                    <th>Sacks</th>
-                    <th>Interceptions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Table rows will be added dynamically using JavaScript -->
-            </tbody>
-        </table>
-    </div>
-    
-    <!-- Include your JavaScript code here -->
-    <script src="{{ url_for('static', filename='js/player_stats.js') }}"></script>    
-
     
 </body>
