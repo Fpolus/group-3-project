@@ -36,55 +36,9 @@ def nfl_stats():
 def nfl_player_stats():
    return render_template('player_stats.html')
 
-@app.route('/team_standings')
-def get_team_standings():
-    # Make an API request to get team standings data
-    standings_url = 'https://api.sportsdata.io/v3/nfl/scores/json/Standings/2023?key={API_KEY}'
-    response = requests.get(standings_url)
-
-    if response.status_code == 200:
-        team_standings = response.json()
-        return jsonify(team_standings=team_standings)
-    else:
-        return jsonify(error='Failed to fetch team standings data')
-     
 @app.route('/team_standings_page')
 def team_standings_page():
-    standings_url = 'https://api.sportsdata.io/v3/nfl/scores/json/Standings/2023?key={API_KEY}'
-    response = requests.get(standings_url)
-
-    if response.status_code == 200:
-        team_standings = response.json()
-        return render_template('standings.html', team_standings=team_standings)
-    else:
-        return render_template(error='Failed to fetch team standings data')
-
-
-
-# -------------------------------------------------------------------------------------------
-# Machine Learning
-# @app.route('/model', methods=['POST'])
-# def model():
-#     try:
-#         # Make a GET request to the API
-#         response = requests.get(url, headers=headers)
-
-#         # Check if the request was successful (status code 200)
-#         if response.status_code == 200:
-#             # Parse the JSON response
-#             data = response.json()
-            
-#             print(data)
-
-#             # Print the data (you can modify this part to process and use the data as needed)
-#             return render_template('nfl_scores.html', data=data)
-#         else:
-#             flash(f'Error: {response.status_code} - {response.text}', 'error')
-#             return redirect('/')
-        
-#     except requests.exceptions.RequestException as e:
-#         flash(f'Error: {e}', 'error')
-#         return redirect('/')
+    return render_template('standings.html', api_key=API_KEY)
 
 if __name__ == '__main__':
     app.run(debug=True)
