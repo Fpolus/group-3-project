@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect
+from flask import Flask, render_template, request, flash, redirect, jsonify
 
 import requests
 
@@ -35,6 +35,30 @@ def nfl_stats():
 @app.route('/player_stats')
 def nfl_player_stats():
    return render_template('player_stats.html')
+
+@app.route('/team_standings')
+def get_team_standings():
+    # Make an API request to get team standings data
+    standings_url = 'https://api.sportsdata.io/v3/nfl/scores/json/Standings/2023?key={API_KEY}'
+    response = requests.get(standings_url)
+
+    if response.status_code == 200:
+        team_standings = response.json()
+        return jsonify(team_standings=team_standings)
+    else:
+        return jsonify(error='Failed to fetch team standings data')
+     
+@app.route('/team_standings_page')
+def team_standings_page():
+    standings_url = 'https://api.sportsdata.io/v3/nfl/scores/json/Standings/2023?key={API_KEY}'
+    response = requests.get(standings_url)
+
+    if response.status_code == 200:
+        team_standings = response.json()
+        return render_template('standings.html', team_standings=team_standings)
+    else:
+        return render_template(error='Failed to fetch team standings data')
+
 
 
 # -------------------------------------------------------------------------------------------
