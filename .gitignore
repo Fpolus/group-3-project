@@ -1,7 +1,7 @@
 config.py
 
-<<<<<<< HEAD
-=======
 __pycache__/
->>>>>>> 302d66623637ef5027ca94fc6734beeced719112
+
+.ipynb_checkpoints
+
 

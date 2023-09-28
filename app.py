@@ -1,10 +1,16 @@
+import os
 from flask import Flask, render_template, request, flash, redirect, jsonify
+from sqlalchemy.orm import session
+from sqlalchemy import create_engine, func, or_
+from sqlalchemy.ext.automap import automap_base
+
+
 
 import requests
 
 from config import API_KEY, secret_key
 
-
+engine = create_engine("sqlite:///.db", echo=False)
 app = Flask(__name__)
 
 # URL for the NFL Scores API endpoint
