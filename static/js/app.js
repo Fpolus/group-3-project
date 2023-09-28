@@ -26,7 +26,8 @@ function fetchAndDisplayStandings(season) {
             let headers = ["Team", "Wins", "Losses", "Ties"];
             let thead = table.append("thead");
             let tbody = table.append("tbody");
-
+            
+            // Add table header cells
             thead.append("tr")
                 .selectAll("th")
                 .data(headers)
