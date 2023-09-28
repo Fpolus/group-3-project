@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect
+from flask import Flask, render_template, request, flash, redirect, jsonify
 
 import requests
 
@@ -36,31 +36,9 @@ def nfl_stats():
 def nfl_player_stats():
    return render_template('player_stats.html')
 
-
-# -------------------------------------------------------------------------------------------
-# Machine Learning
-# @app.route('/model', methods=['POST'])
-# def model():
-#     try:
-#         # Make a GET request to the API
-#         response = requests.get(url, headers=headers)
-
-#         # Check if the request was successful (status code 200)
-#         if response.status_code == 200:
-#             # Parse the JSON response
-#             data = response.json()
-            
-#             print(data)
-
-#             # Print the data (you can modify this part to process and use the data as needed)
-#             return render_template('nfl_scores.html', data=data)
-#         else:
-#             flash(f'Error: {response.status_code} - {response.text}', 'error')
-#             return redirect('/')
-        
-#     except requests.exceptions.RequestException as e:
-#         flash(f'Error: {e}', 'error')
-#         return redirect('/')
+@app.route('/team_standings_page')
+def team_standings_page():
+    return render_template('standings.html', api_key=API_KEY)
 
 if __name__ == '__main__':
     app.run(debug=True)
