@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, flash, redirect
 
 import requests
 
-from config import API_KEY, secret_key
+from config import API_Key, secret_key
 
 
 app = Flask(__name__)
@@ -12,7 +12,7 @@ url = 'https://api.sportsdata.io/v4/nfl/scores/json/Games/2023REG'
 
 # Set up headers with the API key
 headers = {
-    'Ocp-Apim-Subscription-Key': API_KEY
+    'Ocp-Apim-Subscription-Key': API_Key
 }
 
 
