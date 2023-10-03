@@ -1,19 +1,22 @@
+<!DOCTYPE html>
 <html lang="en-us">
-
 <head>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
     <meta charset="UTF-8">
     <title>NFL Tracker</title>
-  
+
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-  
+
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-  
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     
-</head>
+    <!-- Additional Stylesheet for Your Dashboard -->
+    <link rel="stylesheet" href="styles.css">
 
+</head>
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -24,28 +27,111 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="/nfl_scores">NFL Scores</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="/team_stats">Team Stats</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="/player_stats">Player Stats</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/schedule">Weekly Schedule</a>
+                        <a class="nav-link active" aria-current="page" href="/schedule">Weekly Schedule</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    
+
+    <!-- Weekly Schedule Dashboard Section -->
+    <section id="weekly-schedule">
+        <h1>2023 NFL Weekly Schedule</h1>
+
+        <!-- Dropdown to select the week -->
+        <label for="week-selector">Select Week:</label>
+        <select id="week-selector"onchange=scheduleChange()>
+            <option value="week0">Select a week below</option>
+            <option value="week1">Week 1</option>
+            <option value="week2">Week 2</option>
+            <option value="week3">Week 3</option>
+            <option value="week4">Week 4</option>
+            <option value="week5">Week 5</option>
+            <option value="week6">Week 6</option>
+            <option value="week7">Week 7</option>
+            <option value="week8">Week 8</option>
+            <option value="week9">Week 9</option>
+            <option value="week10">Week 10</option>
+            <option value="week11">Week 11</option>
+            <option value="week12">Week 12</option>
+            <option value="week13">Week 13</option>
+            <option value="week14">Week 14</option>
+            <option value="week15">Week 15</option>
+            <option value="week16">Week 16</option>
+            <option value="week17">Week 17</option>
+            <option value="week18">Week 18</option>
+            <!-- Add options for super bowl week?? not sure about this yet -->
+        </select>
+
+        <!-- Dropdown to select NFL teams -->
+    <label for="team-selector">Select NFL Team:</label>
+    <select id="team-selector"onchange=scheduleChange()>
+    <option value="none">Choose a team</option>
+    <option value="all">All Teams</option>
+    <option value="ARI">Arizona Cardinals</option>
+    <option value="ATL">Atlanta Falcons</option>
+    <option value="BAL">Baltimore Ravens</option>
+    <option value="BUF">Buffalo Bills</option>
+    <option value="CAR">Carolina Panthers</option>
+    <option value="CHI">Chicago Bears</option>
+    <option value="CIN">Cincinnati Bengals</option>
+    <option value="CLE">Cleveland Browns</option>
+    <option value="DAL">Dallas Cowboys</option>
+    <option value="DEN">Denver Broncos</option>
+    <option value="DET">Detroit Lions</option>
+    <option value="GB">Green Bay Packers</option>
+    <option value="HOU">Houston Texans</option>
+    <option value="IND">Indianapolis Colts</option>
+    <option value="JAX">Jacksonville Jaguars</option>
+    <option value="KC">Kansas City Chiefs</option>
+    <option value="LV">Las Vegas Raiders</option>
+    <option value="LAC">Los Angeles Chargers</option>
+    <option value="LAR">Los Angeles Rams</option>
+    <option value="MIA">Miami Dolphins</option>
+    <option value="MIN">Minnesota Vikings</option>
+    <option value="NE">New England Patriots</option>
+    <option value="NO">New Orleans Saints</option>
+    <option value="NYG">New York Giants</option>
+    <option value="NYJ">New York Jets</option>
+    <option value="PHI">Philadelphia Eagles</option>
+    <option value="PIT">Pittsburgh Steelers</option>
+    <option value="SF">San Francisco 49ers</option>
+    <option value="SEA">Seattle Seahawks</option>
+    <option value="TB">Tampa Bay Buccaneers</option>
+    <option value="TEN">Tennessee Titans</option>
+    <option value="WAS">Washington Football Team</option>
+    <!-- Add options for each NFL team -->
+</select>
+
+
+
+
+
+
+
+        <!-- Display the selected week's schedule -->
+        <div id="schedule-container">
+            <!-- The schedule for the selected week will be displayed here -->
+        </div>
+    </section>
+
+    <!-- Your Existing Content Goes Here -->
+
+    <!-- Include the JavaScript for Your Dashboard -->
+    <script src="{{url_for('static',filename='js/app.js')}}"></script>
+
 </body>
+</html>

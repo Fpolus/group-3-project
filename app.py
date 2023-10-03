@@ -36,6 +36,10 @@ def nfl_stats():
 def nfl_player_stats():
    return render_template('player_stats.html')
 
+@app.route('/schedule')
+def nfl_weekly_schedule():
+   return render_template('weekly_schedule.html')
+
 
 # -------------------------------------------------------------------------------------------
 # Machine Learning
