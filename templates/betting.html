@@ -1,0 +1,159 @@
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <title>NFL Tracker</title>
+  
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+  
+    <!-- D3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+  
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Include Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- Styling -->
+    
+
+
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="{{ url_for('static', filename='jpg/logo2.png') }}" alt="NFL LOGO" width="40" height="40" class="d-inline-block align-text-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/nfl_scores">NFL Scores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/team_stats">Team Stats</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/player_stats">Player Stats</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/team_standings_page">Standings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/betting">Betting</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Selection fields for team and years -->
+
+    <h1>Welcome, Degenerates!</h1>
+    <p>This is your premier home to analyze data related to sports betting <br></p>
+    
+    <form method="post" action="/process_form">
+
+        <!-- Team Dropdown -->
+        <label for="team">Select a Team:</label>
+        <select id="team" name="team">
+            <option value="">-</option>
+            <option value="Arizona">Arizona</option>
+            <option value="Atlanta">Atlanta</option>
+            <option value="Baltimore">Baltimore</option>
+            <option value="Buffalo">Buffalo</option>
+            <option value="Carolina">Carolina</option>
+            <option value="Chicago">Chicago</option>
+            <option value="Cincinnati">Cincinnati</option>
+            <option value="Cleveland">Cleveland</option>
+            <option value="Dallas">Dallas</option>
+            <option value="Denver">Denver</option>
+            <option value="Detroit">Detroit</option>
+            <option value="Green Bay">Green Bay</option>
+            <option value="Houston">Houston</option>
+            <option value="Indianapolis">Indianapolis</option>
+            <option value="Jacksonville">Jacksonville</option>
+            <option value="Kansas City">Kansas City</option>
+            <option value="LA Chargers">LA Chargers</option>
+            <option value="LA Rams">LA Rams</option>
+            <option value="Las Vegas">Las Vegas</option>
+            <option value="Miami">Miami</option>
+            <option value="Minnesota">Minnesota</option>
+            <option value="NY Giants">NY Giants</option>
+            <option value="NY Jets">NY Jets</option>
+            <option value="New England">New England</option>
+            <option value="New Orleans">New Orleans</option>
+            <option value="Philadelphia">Philadelphia</option>
+            <option value="Pittsburgh">Pittsburgh</option>
+            <option value="San Francisco">San Francisco</option>
+            <option value="Seattle">Seattle</option>
+            <option value="Tampa Bay">Tampa Bay</option>
+            <option value="Tennessee">Tennessee</option>
+            <option value="Washington">Washington</option>
+        </select>
+        
+        <br><br>
+        
+        <!-- Year Input Fields -->
+        <label for="year1">Year 1:</label>
+        <input type="text" id="year1" name="year1">
+        
+        <br><br>
+        
+        <label for="year2">Year 2:</label>
+        <input type="text" id="year2" name="year2">
+        
+        <br><br>
+        <p>Please enter a year between 2003 and 2022</p>
+        
+        <input type="submit" value="Submit">
+    </form>
+
+<p><strong>Results for {{ team }} from {{ year1 }} to {{year2 }}</strong></p>
+<!-- Create the table for the Records -->
+<table id="recordsTable" class="display" style="width:75%" border="2">
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+    <thead>
+        <tr>
+            {% for column in columns_1 %}
+                <th>{{ column }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in record_data %}
+            <tr>
+                {% for value in row %}
+                    <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Include the JavaScript file -->
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+</html>
