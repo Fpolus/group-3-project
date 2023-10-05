@@ -53,7 +53,7 @@
 
         <!-- Dropdown to select the week -->
         <label for="week-selector">Select Week:</label>
-        <select id="week-selector"onchange=scheduleChange()>
+        <select id="week-selector"onchange=scheduleChange(this.value)>
             <option value="week0">Select a week below</option>
             <option value="week1">Week 1</option>
             <option value="week2">Week 2</option>
@@ -108,6 +108,13 @@
 
     <!-- Include the JavaScript for Your Dashboard -->
     <script src="{{url_for('static',filename='js/app.js')}}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+  <script src="https:////cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 
 </body>
 </html>
