@@ -46,6 +46,24 @@
         </div>
     </nav>
 
+    <label for="season-select">Select a Season:</label>
+    <select id="season-select">
+        <option value="2023" selected>2023</option>
+        <option value="2022">2022</option>
+        <option value="2021">2021</option>
+        <option value="2020">2020</option>
+        <option value="2019">2019</option>
+        <option value="2018">2018</option>
+        <option value="2017">2017</option>
+        <option value="2016">2016</option>
+        <option value="2015">2015</option>
+        <option value="2014">2014</option>
+
+    </select>
+    <button id="fetch-button">search</button>
+
+    <div id="pie-chart-container" class="row">
+        <div class="col-md-6">
     <!-- Table to display team standings -->
     <table class="standings-table" id="team-standings-table">
         <caption>Team Standings</caption>
@@ -55,6 +73,8 @@
                 <th>Wins</th>
                 <th>Losses</th>
                 <th>Ties</th>
+                <th>Points For</th>
+                <th>Touch Downs</th>
                 <!-- Add more columns as needed -->
             </tr>
         </thead>
@@ -62,9 +82,15 @@
             <!-- D3.js will dynamically populate this table -->
         </tbody>
     </table>
+</div>
+    <div class="col-md-6">
+        <svg id="bar-chart"></svg>
+    </div>
+</div>
 
     <!-- Include the JavaScript file -->
     <script src="{{ url_for('static', filename='js/app.js') }}">
+    
     </script>
     
 

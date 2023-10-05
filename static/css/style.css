@@ -60,10 +60,48 @@
     padding: 20px 0;
 }
 
+
+/* .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+} */
+
+/* Season Select and Fetch Button Styles */
+#season-select, #fetch-button {
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+}
+
+#fetch-button {
+    background-color: #007bff;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+#fetch-button:hover {
+    background-color: #0056b3;
+}
+
+/* Table Styles */
 .standings-table {
+    width: 100%;
+    border-collapse: collapse;
     background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    margin-right: 10px;
+    /* Rest of the table styles */
+}
+
+.standings-table th,
+.standings-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
 .standings-table th {
@@ -71,7 +109,67 @@
     color: #ffffff;
 }
 
-.standings-table th, .standings-table td {
-    padding: 12px 15px;
-    text-align: center;
+.standings-table tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
+
+/* Caption Styles */
+.standings-table caption {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+/* Custom CSS styles for the bar chart */
+#bar-chart {
+    width: 800px; /* Adjust the width as needed */
+    height: 400px; /* Adjust the height as needed */
+    margin: 0 auto; /* Center the chart horizontally */
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the bars in the bar chart */
+.bar {
+    fill: #343a40; /* Bar color */
+}
+
+/* Style for the x-axis labels */
+.x-axis text {
+    font-size: 14px;
+    fill: #333; /* Label color */
+}
+
+/* Style for the y-axis labels */
+.y-axis text {
+    font-size: 14px;
+    fill: #333; /* Label color */
+}
+
+/* Style for the chart title */
+.chart-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-anchor: middle;
+    fill: #333; /* Title color */
+}
+
+/* Style for the x-axis label */
+.x-label {
+    font-size: 16px;
+    text-anchor: middle;
+    fill: #333; /* Label color */
+}
+
+/* Style for the y-axis label */
+.y-label {
+    font-size: 16px;
+    text-anchor: middle;
+    fill: #333; /* Label color */
+}
+
+
+
+
+

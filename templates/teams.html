@@ -36,7 +36,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/team_stats">Team Stats</a>
+                        <a class="nav-link active" aria-current="page" href="/team_info">Team Stats</a>
                     </li>
 
                     <li class="nav-item">
@@ -51,5 +51,22 @@
             </div>
         </div>
     </nav>
-    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+<!-- Main Content -->
+<div class="container">
+    <h1>Team Info</h1>
+    <hr>
+    <div class="form-group">
+        <label for="team-select">Select a Team:</label>
+        <select class="form-control" id="team-select">
+            <!-- Dynamically populate the options using D3.js and jQuery -->
+        </select>
+    </div>
+    <div id="team-logo-container">
+        <!-- The team logo will be displayed here -->
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
+
+</html>
