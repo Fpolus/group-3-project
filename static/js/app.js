@@ -200,54 +200,8 @@ document.getElementById("fetch-button").addEventListener("click", function () {
 fetchAndDisplayData("2023");
 
 
-// For the player stats table
-$(document).ready(function () {
-    // Function to fetch and display player stats
-    function fetchPlayerStats() {
-        $.ajax({
-            type: 'GET',
-            url: '/player_stats', // Use the Flask route you defined
-            success: function (data) {
-                // Clear existing table rows
-                $('#player-stats-table tbody').empty();
 
-                // Populate the table with player stats
-                data.forEach(function (player_stat) {
-                    $('#player-stats-table tbody').append(
-                        '<tr>' +
-                        '<td>' + player_stat.Name + '</td>' + // Updated to use the 'Name' column
-                        '<td>' + player_stat.Position + '</td>' +
-                        '<td>' + player_stat.SoloTackles + '</td>' +
-                        '<td>' + player_stat.Sacks + '</td>' +
-                        '<td>' + player_stat.Interceptions + '</td>' +
-                        '</tr>'
-                    );
-                });
-            }
-        });
-    }
 
-    // Initial fetch to load all player stats
-    fetchPlayerStats();
-
-    // Search form submission
-    $('#search-form').submit(function (event) {
-        event.preventDefault();
-        var playerName = $('#player_name').val();
-
-        // Perform a search based on player name (you will need to implement this on the server-side)
-        // You can send the playerName to the server and return filtered results
-        $.ajax({
-            type: 'POST',
-            url: '/player_stats', // Use the Flask route for searching
-            data: { player_name: playerName },
-            success: function (data) {
-                // Update the table with search results
-                fetchPlayerStats();
-            }
-        });
-    });
-});
 
 
 
