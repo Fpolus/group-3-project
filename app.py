@@ -1,6 +1,8 @@
-from flask import Flask, render_template, request, flash, redirect
+from flask import Flask, request, jsonify, render_template
 
 import requests
+
+import sqlite3
 
 from config import API_KEY
 
@@ -17,7 +19,7 @@ headers = {
 
 
 
-
+DATABASE = 'football_db.db'
 
 # -------------------------------------------------------------------------------------------
 # Web site
@@ -38,30 +40,55 @@ def nfl_player_stats():
    return render_template('player_stats.html')
 
 
-# -------------------------------------------------------------------------------------------
-# Machine Learning
-# @app.route('/model', methods=['POST'])
-# def model():
-#     try:
-#         # Make a GET request to the API
-#         response = requests.get(url, headers=headers)
+@app.route('/player_stats_data', methods=['GET'])
+def get_players_data():
+    position = request.args.get('position')
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
 
-#         # Check if the request was successful (status code 200)
-#         if response.status_code == 200:
-#             # Parse the JSON response
-#             data = response.json()
-            
-#             print(data)
+    # Create a dictionary to map positions to table names
+    position_to_table = {
+        'Quarterback': 'qb_stats',
+        'Running Back': 'rb_stats',
+        'Wide Receiver': 'wr_stats',
+        'Tight End': 'te_stats',
+        'Defensive Line': 'dl_stats',
+        'Line Back': 'lb_stats',
+        'Defensive Back': 'db_stats',
+        'Kicker': 'k_stats',
+        'Punter': 'p_stats'
+    }
 
-#             # Print the data (you can modify this part to process and use the data as needed)
-#             return render_template('nfl_scores.html', data=data)
-#         else:
-#             flash(f'Error: {response.status_code} - {response.text}', 'error')
-#             return redirect('/')
-        
-#     except requests.exceptions.RequestException as e:
-#         flash(f'Error: {e}', 'error')
-#         return redirect('/')
+    if position in position_to_table:
+        table_name = position_to_table[position]
+
+        # Query to retrieve column names for the specified table
+        cursor.execute(f"PRAGMA table_info({table_name})")
+        columns_info = cursor.fetchall()
+
+        # Extract column names from the result
+        column_order = [column_info[1] for column_info in columns_info]
+
+        # Construct the SELECT query with the retrieved column names
+        query = f"SELECT {', '.join(column_order)} FROM {table_name} ORDER BY name"
+
+        cursor.execute(query)
+        players = cursor.fetchall()
+
+        # Create a list of dictionaries with column names as keys for all players
+        player_data = []
+        for player in players:
+            player_dict = {}
+            for i, column_name in enumerate(column_order):
+                player_dict[column_name] = player[i]
+            player_data.append(player_dict)
+
+        connection.close()
+        return jsonify(player_data)
+    else:
+        # If an invalid position is provided, return an empty list
+        connection.close()
+        return jsonify([])
 
 if __name__ == '__main__':
     app.run(debug=True)

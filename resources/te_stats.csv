@@ -1,4 +1,4 @@
-Position,Name,Number,Team,Games Active,Games Played,Rush Attempts,Rushing Yards,Rushing Yards Per Attempt,Rushing Touchdowns,Receiving Targets,Receptions,Receiving Yards,Receiving Yards Per Reception,Receiving Touchdowns,Reception Percentage,Receiving Yards Per Target,Fumbles,Fumbles Lost
+Position,Name,Number,Team,Activated,Played,RushingAttempts,RushingYards,RushingYardsPerAttempt,RushingTouchdowns,ReceivingTargets,Receptions,ReceivingYards,ReceivingYardsPerReception,ReceivingTouchdowns,ReceptionPercentage,ReceivingYardsPerTarget,Fumbles,FumblesLost
 TE,Marcedes Lewis,84,CHI,4,4,0.0,0.0,0.0,0.0,1.3,1.3,10.0,10.0,0.0,111.9,10.0,0.0,0.0
 TE,Brevin Jordan,9,HOU,4,4,0.0,0.0,0.0,0.0,5.0,5.0,44.8,11.2,1.3,111.9,11.2,0.0,0.0
 TE,Jack Stoll,89,PHI,4,4,0.0,0.0,0.0,0.0,2.5,1.3,7.5,7.5,0.0,56.0,3.8,0.0,0.0

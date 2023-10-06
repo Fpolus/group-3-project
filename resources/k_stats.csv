@@ -1,4 +1,4 @@
-Position,Name,Number,Team,Games Active,Games Played,Field Goals Made,Field Goal Percentage,Extra Points Made,Field Goals Attempted,Field Goals Made 0-19,Field Goals Made 20-29,Field Goals Made 30-39,Field Goals Made 40-49,Field Goals Made 50+
+Position,Name,Number,Team,Activated,Played,FieldGoalsMade,FieldGoalPercentage,ExtraPointsMade,FieldGoalsAttempted,FieldGoalsMade0to19,FieldGoalsMade20to29,FieldGoalsMade30to39,FieldGoalsMade40to49,FieldGoalsMade50Plus
 K,Matt Prater,5,ARI,4,4,10.1,100.7,6.3,11.2,0.0,1.3,5.0,2.5,2.5
 K,Graham Gano,9,NYG,4,4,5.0,74.6,5.0,7.5,0.0,0.0,1.3,1.3,2.5
 K,Blake Grupe,19,NO,4,4,10.1,100.7,6.3,11.2,0.0,5.0,3.8,1.3,1.3

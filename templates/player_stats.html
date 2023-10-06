@@ -45,4 +45,26 @@
         </div>
     </nav>
     
+
+    <h1>Player Stats by Position</h1>
+    
+    <label for="position-select">Select Position:</label>
+    <select id="position-select">
+        <option value="Quarterback">Quarterback</option>
+        <option value="Running Back">Running Back</option>
+        <option value="Wide Receiver">Wide Receiver</option>
+        <option value="Tight End">Tight End</option>
+        <option value="Defensive Line">Defensive Line</option>
+        <option value="Line Back">Line Back</option>
+        <option value="Defensive Back">Defensive Back</option>
+        <option value="Kicker">Kicker</option>
+        <option value="Punter">Punter</option>
+    </select>
+
+    <div id="stats-container">
+        <!-- Player stats will be displayed here -->
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
 </body>

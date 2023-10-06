@@ -53,3 +53,52 @@
     text-align: center;
     padding: 20px 0;
 }
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+#position-select {
+    width: 100%; /* Adjust the width as needed */
+    max-width: 400px; /* Adjust the maximum width as needed */
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+}
+#stats-container {
+    max-width: 800px;
+    margin: 25px auto; /* Adjust the margin values as needed */
+    padding: 25px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    float: left; /* Float the container to the left */
+}
+
+table.player-stats {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.player-stats th, table.player-stats td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table.player-stats th {
+    background-color: #333;
+    color: #fff;
+}
+
+table.player-stats tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
