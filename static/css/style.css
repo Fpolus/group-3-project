@@ -170,6 +170,78 @@
 }
 
 
+/* Style the title */
+h1.players-table {
+    text-align: center;
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+/* Style the label for the select element */
+label.label-players {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    margin: 20px 0;
+}
+
+/* Style the select element */
+select#position-select {
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    font-size: 16px;
+    width: 150px;
+    border: 1px solid #0056b3;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+/* Style the container for player stats */
+#stats-container {
+    margin: 20px auto;
+    /* width: 170%; */
+    padding: 20px;
+    background-color: #fff;
+    /* border: 1px solid #ccc; */
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the table (add your own table structure within this div) */
+#stats-container table {
+    width: 50%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+#stats-container table th {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-transform: uppercase;
+}
+
+#stats-container table td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+}
+
+/* Style the table rows (alternating background colors) */
+#stats-container table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#stats-container table tr {
+    font-size: 12px;
+}
+/* Add hover effect to table rows */
+#stats-container table tr:hover {
+    background-color: #ddd;
+}
+
+
 
 
 
