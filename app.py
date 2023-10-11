@@ -28,14 +28,6 @@ headers = {
 def index():
     return render_template('index.html')
 
-@app.route('/nfl_scores')
-def nfl_scores():
-   return render_template('nfl_scores.html')
-
-@app.route('/team_info')
-def nfl_stats():
-   return render_template('teams.html')
-
 DATABASE = 'NFL.db'
 
 @app.route('/player_stats')
