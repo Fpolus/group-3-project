@@ -1,21 +1,17 @@
 # Import dependencies
-from flask import Flask, render_template, request, flash, redirect, jsonify
-
-from sqlalchemy.orm import session
-from sqlalchemy import create_engine, func, or_
-from sqlalchemy.ext.automap import automap_base
-
-import requests
-
-from config import API_KEY, secret_key
+from flask import Flask, render_template, request, jsonify
 
 import sqlite3
 import pandas as pd
 
+import sqlite3
+
+from config import API_KEY
+
 
 # -------------------------------------------------------------------------------------------
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 # URL for the NFL Scores API endpoint
 url = 'https://api.sportsdata.io/v4/nfl/scores/json/Games/2023REG'
@@ -25,23 +21,69 @@ headers = {
     'Ocp-Apim-Subscription-Key': API_KEY
 }
 
+
 # -------------------------------------------------------------------------------------------
 # Web site
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/nfl_scores')
-def nfl_scores():
-   return render_template('nfl_scores.html')
-
-@app.route('/team_stats')
-def nfl_stats():
-   return render_template('team_stats.html')
+DATABASE = 'NFL.db'
 
 @app.route('/player_stats')
-def nfl_player_stats():
-   return render_template('player_stats.html')
+def player_stats():
+    return render_template('player_stats.html')
+
+
+@app.route('/player_stats_data', methods=['GET'])
+def get_players_data():
+    position = request.args.get('position')
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+
+    # Create a dictionary to map positions to table names
+    position_to_table = {
+        'Quarterback': 'qb_stats',
+        'Running Back': 'rb_stats',
+        'Wide Receiver': 'wr_stats',
+        'Tight End': 'te_stats',
+        'Defensive Line': 'dl_stats',
+        'Line Back': 'lb_stats',
+        'Defensive Back': 'db_stats',
+        'Kicker': 'k_stats',
+        'Punter': 'p_stats'
+    }
+    if position in position_to_table:
+        table_name = position_to_table[position]
+
+        # Query to retrieve column names for the specified table
+        cursor.execute(f"PRAGMA table_info({table_name})")
+        columns_info = cursor.fetchall()
+
+        # Extract column names from the result
+        column_order = [column_info[1] for column_info in columns_info]
+
+        # Construct the SELECT query with the retrieved column names
+        query = f"SELECT {', '.join(column_order)} FROM {table_name} ORDER BY name"
+
+        cursor.execute(query)
+        players = cursor.fetchall()
+
+        # Create a list of dictionaries with column names as keys for all players
+        player_data = []
+        for player in players:
+            player_dict = {}
+            for i, column_name in enumerate(column_order):
+                player_dict[column_name] = player[i]
+            player_data.append(player_dict)
+        connection.close()
+        return jsonify(player_data)
+    else:
+        # If an invalid position is provided, return an empty list
+        connection.close()
+        return jsonify([])
+    
+
 
 @app.route('/team_standings_page')
 def team_standings_page():
@@ -53,7 +95,7 @@ def nfl_weekly_schedule():
 
 @app.route('/betting')
 def betting_page():
-   return render_template('betting.html')
+    return render_template('betting.html')
 
 @app.route('/process_form', methods=['POST'])
 def process_form():
@@ -73,7 +115,7 @@ def process_form():
     cursor.execute(query_1, (team, year1, year2))
     filtered_data_1 = cursor.fetchall()
     columns_1 = ["Year", "Win-Loss Record", "Win %", "ATS Record", "Cover %", "Over Record", "Over %"]
-   
+    
     # Close the cursor and the connection
     cursor.close()
     conn.close()

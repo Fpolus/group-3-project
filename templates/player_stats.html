@@ -2,6 +2,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NFL Tracker</title>
   
     <!-- CSS only -->
@@ -11,16 +12,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
   
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    
+
 </head>
 
-<body>
+<body class="players">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="/">
-                <img src="{{ url_for('static', filename='jpg/logo2.png') }}" alt="NFL LOGO" width="40" height="40" class="d-inline-block align-text-top">
-            </a>
+            <a class="navbar-brand" href="/">NFL Tracker</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -30,15 +29,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/nfl_scores">NFL Scores</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/team_stats">Team Stats</a>
-                    </li>
-
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/player_stats">Player Stats</a>
                     </li>
@@ -60,44 +50,30 @@
         </div>
     </nav>
 
-<!-- Main Content -->
-<div class="container">
-    <h1>Player Stats</h1>
-    <hr>
-    <p>Search for a player's stats by name, year, team, and week.</p>
-    <form id="search-form" action="/player_stats" method="POST">
-        <div class="form-group">
-            <label for="player_name">Player Name</label>
-            <input type="text" class="form-control" id="player_name" name="player_name" placeholder="Enter player name">
-        </div>
-        <button type="submit" class="btn btn-primary">Search by Player Name</button>
-    </form>
     
-    <table class="table" id="player-stats-table">
-        <thead>
-            <tr>
-                <th>Player Name</th>
-                <th>Position</th>
-                <th>Solo Tackles</th>
-                <th>Sacks</th>
-                <th>Interceptions</th>
-            </tr>
-            </thead>
-            <tbody>
-                {% for player_stat in player_stats %}
-                <tr>
-                    <td>{{ player_stat.PlayerName }}</td>
-                    <td>{{ player_stat.Position }}</td>
-                    <td>{{ player_stat.SoloTackles }}</td>
-                    <td>{{ player_stat.Sacks }}</td>
-                    <td>{{ player_stat.Interceptions }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-</div>
 
-<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+<!-- Main Content -->
+<h1 class="players-table">Player Stats by Position</h1>
+    <label class="label-players" for="position-select">Select Position:</label>
+    <select id="position-select">
+        <option value="Quarterback">Quarterback</option>
+        <option value="Running Back">Running Back</option>
+        <option value="Wide Receiver">Wide Receiver</option>
+        <option value="Tight End">Tight End</option>
+        <option value="Defensive Line">Defensive Line</option>
+        <option value="Line Back">Line Back</option>
+        <option value="Defensive Back">Defensive Back</option>
+        <option value="Kicker">Kicker</option>
+        <option value="Punter">Punter</option>
+    </select>
+    <div id="stats-container">
+        <!-- Player stats will be displayed here -->
+    </div>
+
+
+
+<script src="{{ url_for('static', filename='js/standings.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </body>
 
 </html>
