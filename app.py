@@ -88,6 +88,7 @@ def get_players_data():
 @app.route('/team_standings_page')
 def team_standings_page():
     return render_template('standings.html', api_key=API_KEY)
+
 @app.route('/schedule')
 def nfl_weekly_schedule():
    return render_template('weekly_schedule.html')
